@@ -37,7 +37,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_type_list"
-    template_name = "manager/task_type_list"
+    template_name = "manager/task_type_list.html"
     paginate_by = 10
 
 
