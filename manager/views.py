@@ -79,6 +79,22 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
 
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = "manager:position-list"
+
+
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    success_url = reverse_lazy("manager:position-list")
+
+
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("manager:position-list")
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 10
