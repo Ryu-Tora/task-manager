@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from manager.models import Worker, Task, Position, TaskType
@@ -27,13 +28,6 @@ def index(request):
     return render(request, "manager/index.html", context=context)
 
 
-class TaskListView(LoginRequiredMixin, generic.ListView):
-    model = Task
-    context_object_name = "task_list"
-    template_name = "manager/task_list.html"
-    paginate_by = 10
-
-
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_type_list"
@@ -41,11 +35,35 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
 
-class WorkerListView(LoginRequiredMixin, generic.ListView):
-    model = Worker
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = "manager:task-type-list"
+
+
+class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = TaskType
+    success_url = reverse_lazy("manager:task-type-list")
+
+
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = TaskType
+    success_url = reverse_lazy("manager:task-type-list")
+
+
+class TaskListView(LoginRequiredMixin, generic.ListView):
+    model = Task
+    context_object_name = "task_list"
+    template_name = "manager/task_list.html"
     paginate_by = 10
 
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     paginate_by = 10
+
+
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    paginate_by = 10
+
