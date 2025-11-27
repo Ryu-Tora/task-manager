@@ -3,7 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 
-from manager.models import Worker, Task, Position
+from manager.models import Worker, Task, Position, TaskType
+
 
 @login_required
 def index(request):
@@ -32,3 +33,19 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     template_name = "manager/task_list.html"
     paginate_by = 10
 
+
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
+    model = TaskType
+    context_object_name = "task_type_list"
+    template_name = "manager/task_type_list"
+    paginate_by = 10
+
+
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = Worker
+    paginate_by = 10
+
+
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+    paginate_by = 10
