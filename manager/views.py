@@ -58,6 +58,10 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
 
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
+
+
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     fields = "__all__"
@@ -79,6 +83,10 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
 
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Position
+
+
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
     fields = "__all__"
@@ -98,6 +106,10 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 10
+
+
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
 
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
