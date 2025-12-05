@@ -22,4 +22,6 @@ urlpatterns = [
         WorkerListView.as_view(),
         name="worker-list"
     ),
-    ]
+]
+
+app_name = "manager"
