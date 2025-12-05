@@ -14,7 +14,7 @@ urlpatterns = [
         TaskListView.as_view(),
         name="task-list"
     ),
-    path("task_types/",
+    path("types/",
         TaskTypeListView.as_view(),
         name="task-type-list"
     ),
