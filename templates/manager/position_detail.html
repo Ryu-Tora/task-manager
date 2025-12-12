@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<h1>{{ position.name }}</h1>
+
+<h4>Workers with this position:</h4>
+<ul>
+    {% for worker in position.workers.all %}
+        <li>{{ worker.username }}</li>
+    {% empty %}
+        <li>No workers assigned.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'manager:position-update' position.pk %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'manager:position-delete' position.pk %}" class="btn btn-danger">Delete</a>
+{% endblock %}
