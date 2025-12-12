@@ -1,0 +1,25 @@
+body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+.sidebar { min-height: 100vh; }
+
+/* Card hover */
+.card:hover { transform: translateY(-4px); transition: transform 0.15s ease-in-out; }
+
+/* truncate desc */
+.text-truncate {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* custom .bg-outline-secondary for badge */
+.bg-outline-secondary {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: #6c757d;
+}
+
+/* responsive tweaks */
+@media (max-width: 767px) {
+  .sidebar { display: none; }
+}
