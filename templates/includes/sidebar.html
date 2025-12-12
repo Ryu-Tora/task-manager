@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<div class="list-group">
+    <a href="{% url 'manager:index' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'index' %}active{% endif %}">Dashboard</a>
+    <a href="{% url 'manager:task-list' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'task-list' %}active{% endif %}">Tasks</a>
+    <a href="{% url 'manager:task-type-list' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'task-type-list' %}active{% endif %}">Task Types</a>
+    <a href="{% url 'manager:position-list' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'position-list' %}active{% endif %}">Positions</a>
+    <a href="{% url 'manager:worker-list' %}" class="list-group-item list-group-item-action {% if request.resolver_match.url_name == 'worker-list' %}active{% endif %}">Workers</a>
 
-</body>
-</html>
+    <hr>
+    {% if user.is_authenticated %}
+        <p class="px-3 text-muted">Logged in as: {{ user.username }}</p>
+        <form method="post" action="{% url 'logout' %}" class="mx-3 mb-3">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                Logout
+            </button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}" class="btn btn-outline-primary btn-sm mx-3 mb-3">Login</a>
+    {% endif %}
+</div>
