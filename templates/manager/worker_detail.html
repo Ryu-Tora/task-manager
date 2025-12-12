@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<h1>{{ worker.username }}</h1>
+
+<p><strong>Position:</strong> {{ worker.position }}</p>
+
+<h4>Assigned Tasks:</h4>
+<ul>
+    {% for task in worker.tasks_assigned.all %}
+        <li>{{ task.name }} ({{ task.get_priority_display }})</li>
+    {% empty %}
+        <li>No tasks assigned.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'manager:worker-update' worker.pk %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'manager:worker-delete' worker.pk %}" class="btn btn-danger">Delete</a>
+{% endblock %}
