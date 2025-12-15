@@ -36,19 +36,6 @@ class Worker(AbstractUser):
         return f"Username: {self.username}"
 
 
-class Worker(AbstractUser):
-    position = models.ForeignKey(
-        Position,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="workers",
-    )
-
-    def __str__(self):
-        return f"Username: {self.username}"
-
-
 class Task(models.Model):
     class Priority(models.TextChoices):
         LOW = "LOW", "Low"
