@@ -2,24 +2,38 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class TaskType(models.Model):
+class ModelWithNameFieldMixin(models.Model):
     name = models.CharField(
         max_length=255,
         unique=True,
     )
 
+    class Meta:
+        abstract = True
+
     def __str__(self):
         return self.name
 
 
-class Position(models.Model):
-    name = models.CharField(
-        max_length=255,
-        unique=True,
+class TaskType(ModelWithNameFieldMixin):
+    pass
+
+
+class Position(ModelWithNameFieldMixin):
+    pass
+
+
+class Worker(AbstractUser):
+    position = models.ForeignKey(
+        Position,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="workers",
     )
 
     def __str__(self):
-        return self.name
+        return f"Username: {self.username}"
 
 
 class Worker(AbstractUser):
