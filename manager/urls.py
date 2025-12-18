@@ -1,7 +1,7 @@
 from django.conf.urls.static import static
 from django.urls import path
 
-from task_manager import settings
+from task_manager.settings import prod
 from . import views
 
 app_name = "manager"
@@ -65,4 +65,4 @@ urlpatterns = [
         views.WorkerDeleteView.as_view(),
         name="worker-delete",
     ),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(prod.STATIC_URL, document_root=prod.STATIC_ROOT)
